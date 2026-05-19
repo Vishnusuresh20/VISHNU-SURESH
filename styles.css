@@ -596,10 +596,20 @@ pre {
     opacity: 0.8;
 }
 
-.placeholder-gradient-1 { background: linear-gradient(135deg, #FF6B6B, #556270); }
-.placeholder-gradient-2 { background: linear-gradient(135deg, #4A00E0, #8E2DE2); }
+.placeholder-gradient-1 { background: linear-gradient(135deg, #FF6B6B, #e0565b); }
+.placeholder-gradient-2 { background: linear-gradient(135deg, #7b2cbf, #5a189a); }
 .placeholder-gradient-3 { background: linear-gradient(135deg, #e52d27, #b31217); }
-.placeholder-gradient-4 { background: linear-gradient(135deg, #11998e, #38ef7d); }
+.placeholder-gradient-4 { background: linear-gradient(135deg, #10b981, #059669); }
+.placeholder-gradient-5 { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+.placeholder-gradient-6 { background: linear-gradient(135deg, #22c55e, #15803d); }
+.placeholder-gradient-7 { background: linear-gradient(135deg, #ec4899, #db2777); }
+.placeholder-gradient-8 { background: linear-gradient(135deg, #f43f5e, #be123c); }
+.placeholder-gradient-9 { background: linear-gradient(135deg, #6366f1, #4338ca); }
+.placeholder-gradient-10 { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+.placeholder-gradient-11 { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+.placeholder-gradient-12 { background: linear-gradient(135deg, #f97316, #ea580c); }
+.placeholder-gradient-13 { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+.placeholder-gradient-14 { background: linear-gradient(135deg, #a855f7, #7e22ce); }
 
 .project-info {
     padding: 2rem;
@@ -615,7 +625,6 @@ pre {
 
 .project-info p {
     margin-bottom: 1.5rem;
-    flex: 1;
     font-size: 1rem;
 }
 
@@ -742,7 +751,7 @@ pre {
     padding: 3rem 2rem;
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--border-color);
-    text-align: center;
+    text-align: left;
     transition: var(--transition-normal);
 }
 
@@ -755,7 +764,7 @@ pre {
 .service-icon {
     width: 70px;
     height: 70px;
-    margin: 0 auto 1.5rem;
+    margin: 0 0 1.5rem 0;
     background: rgba(99, 102, 241, 0.1);
     color: var(--primary-color);
     border-radius: 50%;
@@ -1114,15 +1123,45 @@ pre {
         text-align: center;
     }
     
-    .skills-grid, .project-grid, .services-grid {
+    .skills-grid, .services-grid {
         grid-template-columns: 1fr;
         justify-items: center;
     }
+
+    .project-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        gap: 1.5rem;
+        padding-bottom: 1.5rem;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
     
-    .project-card, .service-card, .skill-category {
+    .project-grid::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .service-card, .skill-category {
         max-width: 100%;
         margin: 0 auto;
         width: 100%;
+    }
+
+    .project-grid .project-card {
+        scroll-snap-align: start;
+        flex: 0 0 85%;
+        max-width: 85%;
+        margin: 0;
+        height: auto;
+    }
+    
+    .project-info {
+        padding: 1.5rem; /* Tighter padding for mobile */
     }
     
     .category-header {
