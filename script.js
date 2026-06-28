@@ -1,3 +1,22 @@
+// Theme Toggle Logic
+const themeToggle = document.getElementById("theme-toggle");
+
+themeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+});
+
+// Watch for system preference changes if no manual override exists
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (!localStorage.getItem("theme")) {
+        const newTheme = e.matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", newTheme);
+    }
+});
+
 // Mobile Menu Toggle
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");

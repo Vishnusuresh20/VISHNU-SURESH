@@ -33,6 +33,21 @@
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
+    
+    --header-bg: rgba(5, 5, 5, 0.85);
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --bg-alt: #ffffff;
+    --bg-glass: rgba(248, 250, 252, 0.8);
+    --border-color: rgba(15, 23, 42, 0.08);
+    
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    
+    --header-bg: rgba(248, 250, 252, 0.85);
 }
 
 /* Base Styles */
@@ -57,6 +72,7 @@ body {
     overflow-x: hidden;
     width: 100%;
     position: relative;
+    transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 a {
@@ -238,7 +254,7 @@ p {
 
 .header.scrolled {
     padding: 1rem 0;
-    background: rgba(5, 5, 5, 0.85);
+    background: var(--header-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
@@ -321,6 +337,112 @@ p {
     border-radius: 3px;
 }
 
+/* Theme Toggle & Actions Layout */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: var(--transition-normal);
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+[data-theme="light"] .theme-toggle-btn:hover {
+    background: rgba(15, 23, 42, 0.05);
+}
+
+.theme-toggle-svg {
+    stroke: currentColor;
+    stroke-width: 2.2px;
+    stroke-linecap: round;
+    fill: none;
+    transition: transform var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sun-center {
+    fill: currentColor;
+    transition: r var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sun-rays {
+    transition: transform var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1),
+                opacity var(--transition-normal) ease;
+    transform-origin: center;
+}
+
+.mask-circle {
+    transition: cx var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1),
+                cy var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1),
+                r var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode (default): crescent moon shape */
+[data-theme="dark"] .sun-center {
+    r: 9px;
+}
+
+[data-theme="dark"] .mask-circle {
+    cx: 16px;
+    cy: 8px;
+    r: 8px;
+}
+
+[data-theme="dark"] .sun-rays {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+}
+
+/* Light Mode: full sun circle with rays */
+[data-theme="light"] .sun-center {
+    r: 5px;
+}
+
+[data-theme="light"] .mask-circle {
+    cx: 25px;
+    cy: -5px;
+    r: 9px;
+}
+
+[data-theme="light"] .sun-rays {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+}
+
+[data-theme="light"] .theme-toggle-svg {
+    transform: rotate(90deg);
+}
+
+[data-theme="light"] .blob {
+    opacity: 0.15;
+}
+
+[data-theme="light"] .highlight-card {
+    background: rgba(15, 23, 42, 0.03);
+}
+
+[data-theme="light"] .social-icon {
+    background: rgba(15, 23, 42, 0.03);
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -390,8 +512,8 @@ p {
 }
 
 .code-window {
-    background: var(--bg-alt);
-    border: 1px solid var(--border-color);
+    background: #0d0d0f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
